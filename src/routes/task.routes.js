@@ -1,0 +1,10 @@
+const express = require('express'); 
+const takskRoute = express.Router();
+const {createTask, updateTask, deleteonetask, getalltasksbyid, markTaskDone} = require('../controllers/task'); 
+const authMiddleware = require('../middleware/auth.middleware');
+takskRoute.post('/createtask' , authMiddleware  ,createTask);
+takskRoute.patch('/updatetask/:id' , authMiddleware  ,updateTask);
+takskRoute.delete('/deletetask/:id' , authMiddleware  ,deleteonetask);
+takskRoute.get('/getalltasks' , authMiddleware  ,getalltasksbyid);
+takskRoute.put('/donetask/:id' , authMiddleware  ,markTaskDone);
+module.exports = takskRoute;
