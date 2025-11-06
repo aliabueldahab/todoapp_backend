@@ -7,7 +7,6 @@ const takskRoute = require("./routes/task.routes");
 dotenv.config(); 
 
 const app = express();
-const Port = 8000;
 
 // connect to MongoDB before starting the server
 connectDB(); 
@@ -21,6 +20,5 @@ app.get("/", (req, res) => {
 app.use('/auth', regrout);
 app.use('/tasks', takskRoute);
 
-const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, "0.0.0.0", () => console.log(`✅ Server running on port ${PORT}`));
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
