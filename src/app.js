@@ -21,5 +21,6 @@ app.get("/", (req, res) => {
 app.use('/auth', regrout);
 app.use('/tasks', takskRoute);
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
