@@ -103,28 +103,25 @@ const markTaskDone = async (req, res) => {
       return res.status(404).json({ message: "Task not found" })
     }
 
-    // لو التاسك خلصت خلاص
+
     if (task.isDone) {
       return res.status(400).json({ message: "Task already marked as done" })
     }
 
-    // نحسب الوقت اللي أخده فعليًا
     const startTime = task.createdAt
     const endTime = new Date()
     const diffHours = (endTime - startTime) / (1000 * 60 * 60)
 
-    // نحدد هل خلص في الوقت المحدد ولا لأ
     let isSuccess = diffHours <= task.durationHours
 
-    // نحدث التاسك
     task.isDone = true
     task.isSuccess = isSuccess
     await task.save()
 
     res.status(200).json({
       message: isSuccess
-        ? "Task completed successfully on time ✅"
-        : "Task completed but took longer than expected ⏰",
+        ? "Task completed successfully on time "
+        : "Task completed but took longer than expected ",
       task,
     })
   } catch (error) {
